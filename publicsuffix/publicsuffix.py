@@ -162,13 +162,16 @@ class DomainNameHelper(object):
 				continue
 			assert(False)
 			break
+		# The registered domain is the public suffix plus one additional label.
+		if len(parts) < len(rule_labels)+1:
+			return None
 		parts.reverse()
 		return '.'.join(parts)
 
 
 def test(cls, d1, d2, result=True):
 	part = cls.get_registered_domain_part(d1)
-	print d1
+	print part
 	val = part == d2
 	assert(val == result)
 
@@ -180,6 +183,7 @@ if __name__ == '__main__':
 
 	# Matches *.uk rule 
 	test(dnh, 'subdomain.bbc.co.uk', 'bbc.co.uk')
+	test(dnh, 'co.uk', None)
 
 	# Matches an exception rule (!metro.tokyo.jp)
 	test(dnh, 'metro.tokyo.jp', 'metro.tokyo.jp')
