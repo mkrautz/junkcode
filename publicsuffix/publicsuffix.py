@@ -149,9 +149,8 @@ class DomainNameHelper(object):
 		# If the prevailing rule is an exception rule, modify it by
 		# removing the leftmost label.
 		if rule.exception:
-			rule_labels.pop()	
-		labels = domain.split('.')
-		labels.reverse()
+			rule_labels.pop()
+		labels = self._domain_labels(domain)
 		parts = []
 		for i, label in enumerate(labels):
 			if i == len(rule_labels):
