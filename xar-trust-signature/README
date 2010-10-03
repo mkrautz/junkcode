@@ -1,0 +1,4 @@
+xar-trust-signature
+====================
+
+Junkcode to verify the signature of a XAR archive and determine the user's trust setting for the certificate chain using Security.framework of Mac OS X.
